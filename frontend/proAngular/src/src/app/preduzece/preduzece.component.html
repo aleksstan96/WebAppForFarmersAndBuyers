@@ -1,0 +1,96 @@
+<!-- Page Wrapper -->
+<div style="min-height: 100%; background-image: linear-gradient(to bottom, rgba(255,255,255,0.37) 500%,rgba(255,255,255,0.9) 500%),  url(https://img1.akspic.ru/image/46982-pastbishhe-art-semeystvo_travy-rozh-pole-1920x1080.jpg)" class="page-holder bg-cover">
+
+<div class="container-fluid">
+  <header class="text-center text-white py-5">
+    <div style="position: absolute; top:100px; right:60px;">
+        <button type="button" class="btn btn-primary btn-lg" (click)='navigirajNaStranicuSaProizvodima()' >Pogledajte proizvode</button>
+        
+    </div>
+  </header>
+   
+    <h2 style="text-align: center;" class="text-dark"> Porudžbine</h2>
+    <br>
+
+   <div class="container" >
+        <!--tabela-->  
+  <table class="table table-hover " >
+    <thead class=" text-dark-50 bg-white lead font-weight-bolder">
+    <tr>
+        <th><i class="fas fa-archive"></i></th>
+        <th>Korisnik</th>
+        <th>Cena</th>
+        <th>Datum kreiranja <small><i  (click)='sortirajRastuce()' class="fas fa-long-arrow-alt-up"></i> .<i  (click)='sortirajOpadajuce()' class="fas fa-long-arrow-alt-down"></i></small></th>
+        <th>Status</th>
+        <th>Prihvati/Odbij</th>
+        
+    </tr>
+
+    </thead>
+    <tbody class="font-weight-bold text-dark"  >
+    <tr   *ngFor= "let temp of porudzbine; let i=index" >
+        
+        <td >{{i+1}}</td>
+        <td >{{temp.user}}</td>
+        <td >{{temp.cena}}</td>
+        <td >{{temp.datumKreiranja | date: 'MMM d, y, h:mm:ss a'}}</td>
+        <td *ngIf="temp.status=='cekanje'" style="background: rgb(247, 245, 138);">{{temp.status}}</td>
+        <td *ngIf="temp.status!='cekanje'">{{temp.status}}</td>
+        <span *ngIf='temp.status == "kreirana"' >  
+          <td><button class="btn btn-success" (click)='prihvatiPorudzbinu(temp.id)'>Prihvati</button></td>
+          <td><button class="btn btn-danger" (click)='odbijPorudzbinu(temp.id)'>Odbij</button></td>
+        </span>
+        <span *ngIf='temp.status == "otkazana" || temp.status == "odbijena" ' >  
+          <td><button class="btn btn-warning text-white" (click)='ukloniPorudzbinu(temp.id)'>Ukloni porudžbinu</button></td>
+         
+        </span>
+        <span *ngIf='temp.status == "prihvacena"'>  
+          <td>  </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+         <td></td>
+          <td>  <i class="fas fa-check"></i></td>
+        </span> 
+        <span *ngIf='temp.status == "isporucena"'>  
+          <td>  </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+         <td></td>
+          <td> <i class="fas fa-check-double"></i></td>
+        </span> 
+        
+        <span *ngIf='temp.status == "cekanje"'>  
+        
+        
+         <span *ngIf='imaSlobodnih==false'>
+          <td > <i class="fas fa-pause"></i></td>
+         </span>
+         <span *ngIf='imaSlobodnih==true'>
+          <td><button class="btn btn-success" (click)='prihvatiPorudzbinu(temp.id)'>Prihvati</button></td>
+          <td><button class="btn btn-danger" (click)='odbijPorudzbinu(temp.id)'>Odbij</button></td>
+         </span>
+        </span> 
+       
+        <!-- <span *ngIf='temp.status == "odbijena"'>  
+          <td>Odbijena</td>
+          <td>  <i class="fas fa-times"></i></td>
+        </span> -->
+    </tr>
+    
+    </tbody>
+</table>
+
+
+<!--kraj tabele -->
+
+
+   </div>
+  
+
+</div>
+
+</div>

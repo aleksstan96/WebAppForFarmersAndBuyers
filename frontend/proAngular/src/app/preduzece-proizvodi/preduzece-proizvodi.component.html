@@ -1,0 +1,59 @@
+ 
+ <!-- Page Wrapper -->
+<div style="min-height: 100%; background-image:  linear-gradient(to bottom, rgba(255,255,255,0.37) 500%,rgba(255,255,255,0.9) 500%), url(https://cdn.hipwallpaper.com/i/46/47/FEKGR1.jpg)" class="page-holder bg-cover">
+
+ 
+  <div class="container">
+    <header class="text-center text-white py-5">
+      <div style="position: absolute; top:100px; right:60px;">
+          <button type="button" (click)="otvoriDialogDodavanjeProizvoda()" class="btn btn-primary btn-lg" >Dodajte proizvod</button>
+          
+      </div>
+    </header>
+
+ 
+
+    <!--FILTRIRANJE -->
+   <!-- <mat-form-field>
+     <mat-label>Pretraga</mat-label>
+     <input matInput (keyup)="applyFilter($event)" placeholder="Unesite parametar pretrage.">
+   </mat-form-field>
+    -->
+   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+   
+     <!-- Position Column -->
+     <ng-container matColumnDef="naziv">
+       <th mat-header-cell *matHeaderCellDef mat-sort-header> Naziv </th>
+       <td mat-cell *matCellDef="let element" [routerLink]="['proizvod']" [state]="{ proizvod: element, role: role }"> {{element.naziv}} </td>
+     </ng-container>
+   
+     <!-- Name Column -->
+     <ng-container matColumnDef="cena">
+       <th mat-header-cell *matHeaderCellDef mat-sort-header> Cena </th>
+       <td mat-cell *matCellDef="let element" [routerLink]="['proizvod']" [state]="{ proizvod: element, role: role }"> {{element.cena}} </td>
+     </ng-container>
+   
+     <!-- Weight Column -->
+     <ng-container matColumnDef="kolicina" >
+       <th mat-header-cell *matHeaderCellDef mat-sort-header> Količina </th>
+       <td mat-cell *matCellDef="let element" [routerLink]="['proizvod']" [state]="{ proizvod: element, role: role }"> {{element.kolicina}} </td>
+     </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="id" >
+        <th mat-header-cell *matHeaderCellDef > Obrisi </th>
+        <td mat-cell *matCellDef="let element" > <button (click)='obrisi(element.id)' type="button" class="btn-default btn-sm">Obriši</button></td>
+      </ng-container>
+     
+   
+     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+   </table>
+ 
+ 
+   </div>
+  
+  
+ 
+ 
+   </div>

@@ -1,0 +1,87 @@
+<!-- Page Wrapper -->
+<div style="min-height: 100%; background-image:  linear-gradient(to bottom, rgba(255,255,255,0.37) 500%,rgba(255,255,255,0.9) 500%), url(https://cdn.hipwallpaper.com/i/46/47/FEKGR1.jpg)" class="page-holder bg-cover">
+   
+
+
+    <header class="text-center text-white py-5">
+        <h2 style="text-align: center;"> Detalji porudžbine  </h2>
+
+    <br>
+    <div class="text-center text-dark" style="text-align: center; font-size: large; font-weight: bold;">
+        <span>
+            Mesto: {{rasadnik.mesto}}
+        </span>
+        <br>
+        <br>
+        <span *ngIf='vremeh>=1'>
+        Trajanje putovanja: {{vremeh}}h i {{minuti}}min
+      <br>  
+      </span>
+      
+      <span *ngIf='vremeh<1'>
+          Vreme: {{vremem}}min
+      </span>
+      
+      <br>
+      Kilometraža: {{kilometraza}}km
+    </div>
+    
+      
+      </header>
+
+
+<br>
+    <div *ngIf='kuriri.length>0 && dodeljen==false && naCekanju==false' class="container" style="align-items: center;">
+      <table class="table table-hover "  >
+        <thead class=" text-dark-50 bg-white lead font-weight-bolder">
+        <tr>
+            <th><i class="fas fa-running"></i></th>
+            <th>Ime kurira</th>
+            <th>Status</th>
+            <th>Dodeli</th>
+            
+        </tr>
+    
+        </thead>
+        <tbody class="font-weight-bold text-dark"  >
+        <tr   *ngFor= "let temp of kuriri; let i=index" >
+            
+            <td >{{i+1}}</td>
+            <td >{{temp.ime}}</td>
+            <td >
+                <span *ngIf='temp.slobodan==true'>slobodan</span>
+                <span *ngIf='temp.slobodan==false'>zauzet</span>
+            </td>
+            <td >
+                <span *ngIf='temp.slobodan==true'>
+                    <button type="button" class="btn btn-success" (click)='dodeli(temp.id)'>Dodeli</button>
+                </span>
+                <span *ngIf='temp.slobodan==false'>
+                    <i class="fas fa-shuttle-van"></i>
+                </span>
+            </td>
+        </tr>
+        
+        </tbody>
+    </table>
+
+
+    </div>
+
+    <div *ngIf='dodeljen==true && naCekanju==false;' style="align-items: center;text-align: center;">
+        <h2 class="text-center text-white" style="text-align: center;"> Kurir je uspešno dodeljen porudžbini!  </h2>
+        <button  type="button"  class="btn btn-success" (click)='nazad()'>
+            Nazad
+        </button>
+
+    </div>
+
+    <div *ngIf='naCekanju==true;' style="align-items: center;text-align: center;">
+        <h2 class="text-center text-white" style="text-align: center;"> Nema slobodnih kurira, porudžbina je na čekanju!  </h2>
+        <button  type="button"  class="btn btn-success" (click)='nazad()'>
+            Nazad
+        </button>
+
+    </div>
+    
+    </div>

@@ -1,0 +1,73 @@
+
+  <div class="container-fluid" >
+    <div class="row centered-form">
+    <!-- <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4"> -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    <h2  class="panel-title">Dodajte admina</h2>
+                    <br>
+                     </div>
+                     <mat-dialog-content>
+                        <div class="panel-body">
+                            <div *ngIf="clicked && razliciteLozinke" class="alert alert-danger form-group">
+                                Ponovljena lozinka se razlikuje od originalne.
+                             </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" [(ngModel)]="user.password" #password="ngModel" required [pattern]="regex" placeholder="Lozinka"  class="form-control input-sm">
+                                        <div *ngIf="password.invalid &&  clicked"
+                                            class="alert alert-danger">
+
+                                            <div *ngIf="password.errors?.required">
+                                                Unesite lozinku.
+                                            </div>
+                                            <div *ngIf="password.errors?.pattern">
+                                                Lozinka sadržati barem 7 karaktera, od toga bar jedno veliko slovo, jedan broj i jedan specijalan karakter i mora počinjati slovom.
+                                           </div> 
+                                        </div>    
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" [(ngModel)]="passwordReplica" placeholder="Potvrda lozinke" required #potvrda="ngModel" class="form-control input-sm">
+                                        <div *ngIf="potvrda.invalid &&  clicked"
+                                        class="alert alert-danger">
+
+                                            <div *ngIf="potvrda.errors?.required">
+                                            Unesite potvrdu lozinke.
+                                            </div>
+                                  </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                                    <div class="form-group">
+                                        <div *ngIf="usernamePostoji" class="alert alert-danger form-group">
+                                            Korisničko ime već postoji u sistemu.
+                                         </div>
+                                        <input type="text" [(ngModel)]="user.username" #username="ngModel" required placeholder="Korisničko ime"  class="form-control input-sm">
+                                        <div *ngIf="username.invalid && clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="username.errors?.required">
+                                               Unesite korisničko ime.
+                                            </div>
+                                          </div>
+                                    </div>
+                              
+                       
+
+                           
+                            
+                            <input type="submit" value="Dodajte" class="btn btn-info btn-block" (click)="save(username.errors?.required,password.errors?.required)">
+                            <!-- <button class="mat-button" mat-dialog-close>Close</button> 
+                      <button class="mat-raised-button" (click)="save()">Save</button> -->
+                      
+                          
+                    </div>
+                </mat-dialog-content>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->

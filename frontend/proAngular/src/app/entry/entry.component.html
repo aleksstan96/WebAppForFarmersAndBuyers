@@ -1,0 +1,56 @@
+<!-- Page Wrapper -->
+<div style=" background: url(https://wallpaperstock.net/sunset--wheat-field_wallpapers_41225_1920x1080.jpg)" class="page-holder bg-cover">  
+<!--
+  <div style=" background: url(https://cdn.hipwallpaper.com/i/46/47/FEKGR1.jpg)" class="page-holder bg-cover">  
+-->
+  <div class="container py-5">
+      <header class="text-center text-white py-5">
+        <h1 class="display-4 font-weight-bold mb-4"> Dobrodošli!</h1>
+        <h2 *ngIf='isUserLoggedIn==false' class="display-8 mb-4">Registrujte se potpuno besplatno!</h2>
+        <!-- <p class="lead mb-0">Create a responsive full-page background image window using Bootstrap 4.</p>
+        <p class="font-italic">Snippet By <a href="https://bootstrapious.com" class="text-white">
+            <u>Bootstrapious</u></a>
+        </p> -->
+      </header>
+
+      <div *ngIf='isUserLoggedIn==false' class="row" align="center">
+        <div class="col-xl">
+            <h2 class="h2">Registracija <br>
+              za poljoprivrednike 
+              <i class="fas fa-truck-monster"></i> 
+            </h2> 
+            <button class="btn btn-info btn-lg" mat-raised-button (click)="openDialog()">Registruj se</button>
+        </div>
+        <div  class="col-xl">
+          <h2 class="h2">Registracija <br>
+            za preduzeća 
+            <i class="fas fa-store"></i>
+          </h2> 
+          <button class="btn btn-info btn-lg" mat-raised-button (click)="openDialog1()">Registruj se</button>
+        </div>
+      </div>
+      
+
+      <div class="text-center">
+        <div *ngIf='isUserLoggedIn==true && isAdminLoggedIn==true' > 
+          <button class="btn btn-success btn-lg"  (click)="admin()">Pogledajte zahteve <i class="far fa-envelope"></i></button>
+        </div>
+        <div *ngIf='isUserLoggedIn==true && isPoljoprivrednikLoggedIn==true'> 
+          <button class="btn btn-success btn-lg"  (click)="poljoprivrednik()">Pogledajte rasadnike <i class="fas fa-seedling"></i></button>
+        </div>
+        <div *ngIf='isUserLoggedIn==true && isPreduzeceLoggedIn==true'> 
+          <button class="btn btn-success btn-lg"  (click)="preduzece()">Pogledajte porudžbine <i class="fas fa-box-open"></i></button>
+        </div>
+  
+      </div>
+
+      
+
+  
+       
+    </div>
+  </div>
+  
+    
+  
+  

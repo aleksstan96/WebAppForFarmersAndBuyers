@@ -1,0 +1,68 @@
+ <!-- Page Wrapper -->
+ <div style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.37) 500%,rgba(255,255,255,0.9) 500%),  url(https://cdn.hipwallpaper.com/i/46/47/FEKGR1.jpg)" class="page-holder bg-cover">
+
+    <div class="container py-5">
+    
+      <header class="text-center text-white py-5">
+        <div style="position: absolute; top:100px; right:60px;">
+            <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-success btn-lg" id="dropdownBasic1" ngbDropdownToggle>Dodajte korisnika</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                <div class="container ">
+                  <div class="btn-group-vertical">
+                    <button type="button" class="btn btn-success" (click)='openDialogDodavanjePolj()'>Poljoprivrednika</button>
+                    <button type="button" class="btn btn-success" (click)='openDialogDodavanjePreduzeca()'>Preduzeca</button>
+                    <button type="button" class="btn btn-success" (click)='openDialogDodavanjeAdmina()'>Admina</button>
+                  </div>
+                 
+                 </div>
+              </div>
+              </div>
+        </div>
+      </header>
+      
+
+ 
+      <div class="container">
+          <!--tabela-->  
+       <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-hover ">
+            <thead class=" text-dark-50 bg-white lead font-weight-bolder">
+            <tr>
+                
+                <th>Korisnicko ime</th>
+                <th>Lozinka</th>
+                <th>Uloga</th>
+                <th>Izmena</th>
+                <th>Brisanje</th>
+                
+            </tr>
+            </thead>
+            <tbody class="font-weight-bold text-dark"  >
+            <tr   *ngFor= "let temp of korisnici">
+                <td >{{temp.username}}</td>
+                <td >{{temp.password}}</td>
+                <td >{{temp.role}}</td>
+                <td >
+                    <button type="button" class="btn btn-info btn-lg  mr-5" (click)='openDialogIzmena(temp)' >Izmenite </button>
+                </td>
+                <td >
+                    <button type="button" class="btn btn-danger btn-lg" (click)='deleteUser(temp.id)' >Obrišite</button>
+                </td>
+            </tr>
+            
+            </tbody>
+        </table>
+       </div> 
+
+
+        <!--kraj tabele -->
+ 
+      </div>
+    
+          
+
+    </div>
+        
+
+  </div>

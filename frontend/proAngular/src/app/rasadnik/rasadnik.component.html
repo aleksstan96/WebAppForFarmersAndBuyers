@@ -1,0 +1,221 @@
+
+
+<!-- Page Wrapper -->
+<div style="background-image:   url(https://i.pinimg.com/originals/43/43/ad/4343adf11b6aff58f61293b19105a661.jpg)" class="page-holder bg-cover">
+  <!-- <div style="background-color: rgba(64, 63, 65, 0.11);"> -->
+
+
+  <!--Sidebar -->
+  <div class= "container-fluid" style="float: right;">
+
+    <div class="position-absolute text-white" style="top:100px; right:20px;">
+      <h3><i class="fas fa-thermometer-half"> </i>Temperatura:</h3>
+      
+    </div>
+    
+    <div class="position-absolute  " style="top:150px; right:50px;">
+      <jqxLinearGauge #myLinearGauge style="margin-left: 20px; float: left;"
+        [max]="60" [value]="-60" [pointer]="pointer"
+        [colorScheme]="'scheme05'" [orientation]="'vertical'"
+        [labels]="labels" [ticksMajor]="ticksMajor" 
+        [ticksMinor]="ticksMinor" [ranges]="ranges">
+      </jqxLinearGauge> 
+      
+    </div>
+
+
+
+    <div class="position-absolute  " style="top:460px;right:107px;">
+      <button type="button" class="btn btn-danger" (click)='tempPlus()'>
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  
+    <div class="position-absolute  " style="top:460px;right:50px;">
+      <button type="button" style=" right:200px;"class="btn btn-info" (click)='tempMinus()'>
+        <i class="fas fa-minus"></i>
+      </button>
+    </div>
+
+    <div class="position-absolute text-white" style="top:550px;right:60px;">
+      <h3><i class="fas fa-tint"></i> Voda:</h3>
+    </div>
+
+    <div class="position-absolute" style="top:580px;right:20px;">
+        <!-- <jqxBarGauge #myBarGauge (onDrawEnd)="onDrawEnd()"
+        [width]='"100%"' [height]='250' [relativeInnerRadius]='0.5'
+        [values]='[25]'  [formatFunction]='formatFunction'>
+        </jqxBarGauge> -->
+        <circle-progress
+          [percent]= kolicinaVodeProcentiVal
+          [radius]="60"
+          [outerStrokeWidth]="20"
+          [innerStrokeWidth]="0"
+          [outerStrokeColor]="'	#1E90FF'"
+          [innerStrokeColor]="'#C7E596'"
+          [animation]="true"
+          [animationDuration]="300"
+          [title]=kolicinaVodeVal
+          [showUnits]=false
+          [showSubtitle] = false
+          [titleColor]="'#FFFFFF'"
+          [titleFontWeight]=650
+          [startFromZero]=false
+        ></circle-progress>
+    </div>
+ 
+
+    <div class="position-absolute  " style="top:750px;right:107px;">
+      <button type="button" class="btn btn-danger" (click)='vodaPlus()'>
+        <i class="fas fa-plus"></i>
+      </button>
+    </div>
+  
+    <div class="position-absolute  " style="top:750px;right:50px;">
+      <button type="button" style=" right:200px;"class="btn btn-info" (click)='vodaMinus()'>
+        <i class="fas fa-minus"></i>
+      </button>
+    </div>
+
+
+
+   </div>
+
+    
+ 
+ <!-- -->
+
+    <div class="container">
+
+      <header class="text-white textite py-5">
+        <h2>Rasadnik {{rasadnik.naziv}}, {{rasadnik.mesto}}</h2>  
+       
+
+      
+      </header>
+
+      <div style="align-items: center;">
+        <table class="table " >
+    
+        <tbody class=" text-success text-center"  >
+          <tr   *ngFor='let in of counter(rasadnik.duzina) ;let i = index'>
+            <td class="dropdown square" *ngFor='let in of counter(rasadnik.sirina) ;let j = index' (mouseover)='prikaziPodatke((i*10)+(j+1))'>              
+                <span *ngIf = 'imaSadnicu((i*10)+(j+1))'>
+                  <i class="fas fa-seedling "></i>
+                  <div class="dropdown-content" >  <!--Dropdown sadnice-->
+                    <form class="px-4 py-3">
+                      <h6><i class="fas fa-seedling "></i>Naziv sadnice: {{trenutnaSadnica.naziv}}</h6>
+                      <h6>Proizvodjac: {{trenutnaSadnica.proizvodjac}}</h6> 
+                      <h6>Progres: {{trenutnaSadnica.progres | percent : '0.0-0'}}</h6> 
+                      <div class="progress">
+                        <div class="progress-bar" style="text-align: center; " [style.width]="trenutnaSadnica.progres | percent" >{{trenutnaSadnica.progres | percent : '0.0-0'}}</div>
+                      </div>
+                      <div *ngIf="trenutnaSadnica.progres!=1">
+                        <br>
+                        <!--dodavanje preparata-->
+                        <div ngbDropdown class="d-inline-block">
+                          <button class="btn btn-success btn-sm" id="dropdownBasic1" ngbDropdownToggle>Dodajte preparate</button>
+                          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                            <div class="container ">
+                              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                              <table class="table">
+                                <tbody  *ngFor='let preparatiTemp of proizvodiPreparati'>
+                                  <tr class="table-success">
+                                    <td >{{preparatiTemp.naziv}}</td>
+                                    <td> <small>Ubrzava za: {{preparatiTemp.dani}} dana</small></td>
+                                    <td>
+                                      <button type="button" class="btn btn-success btn-sm" (click)='dodajPreparat(trenutnaSadnica.id, preparatiTemp.id.proizvod_id)'><i class="fas fa-vial"></i></button>
+                                    </td>
+                                  </tr>
+                                  
+                                </tbody>
+                              </table>
+                              </div>
+                          </div>
+                        
+                          </div>
+                        </div>
+                        <!--kraj: dodavanje preparata-->
+                      </div> 
+                      <div *ngIf="trenutnaSadnica.progres==1">
+                        <br>
+                        <button type="button" class="btn btn-success btn-sm" (click)='izvadiSadnicu(trenutnaSadnica.id)' ><h6 >Izvadite sadnicu</h6></button>
+                      </div>       
+                    </form>
+                    
+                  </div>                  
+                </span>
+              <!-- </span> -->
+              <span *ngIf = '!imaSadnicu((i*10)+(j+1)) && !imaIzvadjenuSadnicu((i*10)+(j+1))'>
+               <i class="fas fa-circle text-warning"></i>
+                <div class="dropdown-content" >  <!--Dropdown za sadenje sadnice-->
+                  <!--dropdown za izbor sadnice iz magacina-->
+                  <div ngbDropdown class="d-inline-block">
+                    <div class="container ">
+                      <table class="table">
+                          <tr>
+                            <td>
+                              <button class="btn btn-success btn-md" id="dropdownBasic1"  ngbDropdownToggle>Zasadite sadnicu</button>
+                            </td>
+                          </tr>
+                      </table>
+                      </div>
+                      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                        <div class="container ">
+                          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                          <table class="table">
+                            <tbody  *ngFor='let sadniceTemp of proizvodiSadnice'>
+                              <tr class="table-success">
+                                <!-- <td >{{sadniceTemp.id.proizvod_id}}</td> -->
+                                <td >{{sadniceTemp.naziv}}</td>
+                                <td>
+                                  <button type="button" class="btn btn-success btn-sm" (click)='zasadiSadnicu((i*10)+(j+1), sadniceTemp.id.proizvod_id)'><i class="fas fa-carrot"></i></button>
+                                </td>
+                              </tr>
+                              
+                            </tbody>
+                          </table>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+                  <!--kraj: dropdown za izbor sadnice iz magacina-->
+                </div>   
+                <!--kraj: Dropdown za sadenje sadnice-->               
+              </span>
+              <span *ngIf = 'imaIzvadjenuSadnicu((i*10)+(j+1))'>
+                <i class="fas fa-carrot text-info"></i>
+                <div class="dropdown-content" >  <!--Dropdown za sadenje sadnice-->
+                  <!--dropdown za izbor sadnice iz magacina-->
+                  <div ngbDropdown class="d-inline-block">
+                    <div class="container ">
+                      <h6>Sadnica je izvađena pre manje od jednog dana, sačekajte kako biste mogli da posadite drugu.</h6>
+                 
+                </div>
+                </div>
+                </div>            
+              </span>
+            </td>
+          </tr>
+         
+        </tbody>
+       
+      </table>
+      </div>
+
+
+      
+
+     
+    </div>
+  </div>
+  
+   <!-- <div class="view" style="background-image: url(' https://download.hipwallpaper.com/desktop/1600/900/67/99/s0DieU.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;" > -->
+              <!-- <div class="view" style="background-image: url(' https://cdn.hipwallpaper.com/i/46/47/FEKGR1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;" > -->
+              <!-- <div class="view" style="background-image: url(' https://cdn.hipwallpaper.com/i/49/57/ZwV6XH.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;" > -->
+                <!-- <div class="view" style="background-image: url(' https://cdn.stocksnap.io/img-thumbs/960w/green-farm_RQFZWA5OOP.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;" > -->
+  
+  
+  
+  
+  

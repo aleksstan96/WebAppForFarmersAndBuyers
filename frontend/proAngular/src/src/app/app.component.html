@@ -1,0 +1,16 @@
+
+
+<app-header></app-header>
+
+<router-outlet></router-outlet>
+<div  class=" bg-danger" style="position: fixed;  bottom: 0px; right: 0px;" *ngIf='upozoreni!=null && upozoreni.length>0'>
+
+        <div *ngIf='upozoreni.length==1' style="text-align: right;  font-weight: normal; color: white; padding: 8px;" >
+            Rasadnik {{upozoreni}} zahteva odrzavanje!
+       </div>
+       <div *ngIf='upozoreni.length>1'  style="text-align: right; font-weight: normal; color: white; padding: 8px;" >
+        Rasadnici {{upozoreni}} zahtevaju odrzavanje!
+     </div>
+</div>
+
+<app-footer></app-footer>

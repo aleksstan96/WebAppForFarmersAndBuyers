@@ -1,0 +1,358 @@
+
+   
+    <div style="min-height: 100%;" class="container">
+
+
+       <!--Navbar-->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark mt-3 mb-5">
+
+
+       <!-- Navbar brand -->
+       <span class="navbar-brand">Kategorije:</span>
+
+ 
+
+       <!-- Links -->
+       <ul class="navbar-nav mr-auto">
+         <li class="nav-item active"  (click)='setKategorija("sve")'>
+           <a class="nav-link">Sve
+             <span class="sr-only">(current)</span>
+           </a>
+         </li>
+         <li class="nav-item" (click)='setKategorija("sadnice")'>
+           <a class="nav-link" >Sadnice</a>
+         </li>
+         <li class="nav-item" (click)='setKategorija("preparate")'>
+           <a class="nav-link" >Preparati</a>
+         </li>
+       
+       </ul>
+       <!-- Links -->
+
+  
+      <!--Search-->
+      <nav class="navbar navbar-expand-sm bg-dark navbar-dark" style="float: right;">
+        <form class="form-inline" action="/action_page.php">
+          <input class="form-control mr-sm-2" type="text" placeholder="Pretraga"  #myInput (keyup.enter)="pretrazi(myInput.value)">
+          <button (click)='pretrazi(myInput.value)' class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+        </form>
+      </nav>
+      
+
+
+    </nav>
+    <!--/.Navbar-->
+
+    <div style="color: red; text-align: center;" *ngIf="message!=''">
+      <h2>{{message}}</h2>
+    </div>
+    
+
+     <!--Section: Products v.3-->
+ <section class="text-center mb-4 " >
+   <span >
+
+       <!--Grid row-->
+    <div  *ngFor='let in of counter(gridDuzina) ;let i = index' class="row">
+
+       <!-- <span *ngFor='let in of counter(gridSirina)'>  -->
+        <!-- <span *ngFor='let temp of prikazi((i*10)+(j+1))'> -->
+
+                <!--Grid column 1-->
+            <div  class="col-lg-3 col-md-6 mb-4">
+
+              <!--Card-->
+              <div *ngIf="prikazi((i*4)+0)!=undefined" class="card">
+
+                 <!--Card image-->
+                <div class="view overlay">
+                  <img src={{prikazi((i*4)+0).slikaUrl}} [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+0), role: role }" class="card-img-top" alt="">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+                <!--Card image-->
+              
+
+                <!--Card content-->
+                <div class="card-body text-center">
+                  <!--Category & Title-->
+                  <div class="container h-50 w-20">
+                    <a [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+0) , role: role}" class="grey-text">
+                      <h4>{{prikazi((i*4)+0).naziv}}</h4>
+                    </a>
+                  </div>
+                  <h5>
+                    <strong>
+                      <a [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+0), role: role }" class="dark-grey-text">Proizvodi: {{prikazi((i*4)+0).proizvodjac}}
+                      </a>
+                    </strong>
+                  </h5>
+
+                  <span>{{prikazi((i*4)+0).cena}}din</span>
+                  <br>
+
+                  <br>
+                  <form *ngIf='prikazi((i*4)+0).kolicina>0 && ulogaKorisnika=="ROLE_POLJOPRIVREDNIK" ' class="d-flex justify-content-left">
+                    <!-- Default input -->
+                    <input type="number" min="1" value="1" #kolicina0 aria-label="Search" class="form-control" style="width: 60px">
+                    <button (click)='dodajUKorpu(prikazi((i*4)+0), kolicina0.value)' class="btn btn-primary btn-sm my-0 p" type="submit">Dodaj u korpu
+                      <i class="fas fa-shopping-cart ml-1"></i>
+                    </button>
+                    
+                  </form>
+                  <h5 *ngIf='prikazi((i*4)+0).kolicina==0' class="text-white" style="border-radius: 5px; background-color: rgb(247, 41, 41); font-weight: 100; height: 35px; text-align: center; vertical-align: text-bottom;">
+                    NEMA NA STANJU
+                  </h5>
+
+                  <!--Rejting-->
+                  <div class="container"> 
+                    <ng-template #t let-fill="fill">
+                      <span class="star" [class.full]="fill === 100">
+                        <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                      </span>
+                    </ng-template>
+                    
+                    <ngb-rating [(rate)]="prikazi((i*4)+0).ocena" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+                    
+                    <pre>Ocena: <b *ngIf='prikazi((i*4)+0).ocena!=0'>{{prikazi((i*4)+0).ocena}}</b> <b *ngIf='prikazi((i*4)+0).ocena==0'>Nema ocena</b></pre>
+                  </div>
+
+                </div>
+                <!--Card content-->
+
+              </div>
+              <!--Card-->
+
+            </div>
+            <!--Grid column 1-->
+
+                 <!--Grid column 2-->
+                 <div  class="col-lg-3 col-md-6 mb-4">
+
+                  <!--Card-->
+                  <div *ngIf="prikazi((i*4)+1)!=undefined" class="card">
+    
+                     <!--Card image-->
+                    <div class="view overlay">
+                      <img src={{prikazi((i*4)+1).slikaUrl}} [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+1), role: role }" class="card-img-top" alt="">
+                      <a>
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                    </div>
+                    <!--Card image-->
+                  
+    
+                    <!--Card content-->
+                    <div class="card-body text-center">
+                      <!--Category & Title-->
+                      <div class="container  h-50 w-20">
+                        <a [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+1) , role: role}" class="grey-text">
+                          <h4>{{prikazi((i*4)+1).naziv}}</h4>
+                        </a>
+                      </div>
+                      <h5>
+                        <strong>
+                          <a [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+1) , role: role}" class="dark-grey-text">Proizvodi: {{prikazi((i*4)+1).proizvodjac}}
+                          </a>
+                        </strong>
+                      </h5>
+
+                      <span>{{prikazi((i*4)+1).cena}}din</span>
+                      <br>
+    
+                      <br>
+                      <form *ngIf='prikazi((i*4)+1).kolicina>0 && ulogaKorisnika=="ROLE_POLJOPRIVREDNIK"' class="d-flex justify-content-left">
+                        <!-- Default input -->
+                        <input type="number" min="1" #kolicina1 value="1" aria-label="Search" class="form-control" style="width: 60px">
+                        <button (click)='dodajUKorpu(prikazi((i*4)+1), kolicina1.value)' class="btn btn-primary btn-sm my-0 p" type="submit">Dodaj u korpu
+                          <i class="fas fa-shopping-cart ml-1"></i>
+                        </button>
+                      </form>
+                      <h5 *ngIf='prikazi((i*4)+1).kolicina==0' class="text-white" style="border-radius: 5px; background-color: rgb(247, 41, 41); font-weight: 100; height: 35px; text-align: center; vertical-align: text-bottom;">
+                        NEMA NA STANJU
+                      </h5>
+                       <!--Rejting-->
+                       <div class="container"> 
+                        <ng-template #t let-fill="fill">
+                          <span class="star" [class.full]="fill === 100">
+                            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                          </span>
+                        </ng-template>
+                        
+                        <ngb-rating [(rate)]="prikazi((i*4)+1).ocena" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+                        
+                        <pre>Ocena: <b *ngIf='prikazi((i*4)+1).ocena!=0'>{{prikazi((i*4)+1).ocena}}</b> <b *ngIf='prikazi((i*4)+1).ocena==0'>Nema ocena</b></pre>
+                      </div>
+    
+                    </div>
+                    <!--Card content-->
+    
+                  </div>
+                  <!--Card-->
+    
+                </div>
+                <!--Grid column 2-->
+
+                     <!--Grid column 3-->
+            <div  class="col-lg-3 col-md-6 mb-4">
+
+              <!--Card-->
+              <div *ngIf="prikazi((i*4)+2)!=undefined" class="card">
+
+                 <!--Card image-->
+                <div class="view overlay">
+                  <img src={{prikazi((i*4)+2).slikaUrl}} [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+2), role: role}" class="card-img-top" alt="">
+                  <a>
+                    <div class="mask rgba-white-slight"></div>
+                  </a>
+                </div>
+                <!--Card image-->
+              
+
+                <!--Card content-->
+                <div class="card-body text-center">
+                  <!--Category & Title-->
+                  <div class="container  h-50 w-20">
+                    <a [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+2) , role: role}" class="grey-text">
+                      <h4>{{prikazi((i*4)+2).naziv}}</h4>
+                    </a>
+                  </div>
+                  
+                  <h5>
+                    <strong>
+                      <a [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+2) , role: role}" class="dark-grey-text">Proizvodi: {{prikazi((i*4)+2).proizvodjac}}
+                      </a>
+                    </strong>
+                  </h5>
+
+                  <span>{{prikazi((i*4)+2).cena}}din</span>
+                  <br>
+                 
+                  <br>
+                  <form *ngIf='prikazi((i*4)+2).kolicina>0 && ulogaKorisnika=="ROLE_POLJOPRIVREDNIK"' class="d-flex justify-content-left">
+                    <!-- Default input -->
+                    <input type="number" min="1" #kolicina2 value="1" aria-label="Search" class="form-control" style="width: 60px">
+                    <button (click)='dodajUKorpu(prikazi((i*4)+2), kolicina2.value)' class="btn btn-primary btn-sm my-0 p" type="submit">Dodaj u korpu
+                      <i class="fas fa-shopping-cart ml-1"></i>
+                    </button>
+                  </form>
+                  <h5 *ngIf='prikazi((i*4)+2).kolicina==0' class="text-white" style="border-radius: 5px; background-color: rgb(247, 41, 41); font-weight: 100; height: 35px; text-align: center; vertical-align: text-bottom;">
+                    NEMA NA STANJU
+                  </h5>
+
+
+                  
+
+                   <!--Rejting-->
+                   <div class="container"> 
+                    <ng-template #t let-fill="fill">
+                      <span class="star" [class.full]="fill === 100">
+                        <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                      </span>
+                    </ng-template>
+                    
+                    <ngb-rating [(rate)]="prikazi((i*4)+2).ocena" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+                    
+                    <pre>Ocena: <b *ngIf='prikazi((i*4)+2).ocena!=0'>{{prikazi((i*4)+2).ocena}}</b> <b *ngIf='prikazi((i*4)+2).ocena==0'>Nema ocena</b></pre>
+                  </div>
+
+                  
+                </div>
+                <!--Card content-->
+
+              </div>
+              <!--Card-->
+
+            </div>
+            <!--Grid column 3-->
+
+                 <!--Grid column 4-->
+                 <div  class="col-lg-3 col-md-6 mb-4">
+
+                  <!--Card-->
+                  <div *ngIf="prikazi((i*4)+3)!=undefined" class="card">
+    
+                     <!--Card image-->
+                    <div class="view overlay">
+                      <img src={{prikazi((i*4)+3).slikaUrl}}   [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+3), role: role }" class="card-img-top" alt="">
+                      <a>
+                        <div class="mask rgba-white-slight"></div>
+                      </a>
+                    </div>
+                    <!--Card image-->
+                  
+    
+                    <!--Card content-->
+                    <div class="card-body text-center">
+                      <!--Category & Title-->
+                      <div class="container  h-50 w-20">
+                        <a [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+3), role: role }" class="grey-text">
+                          <h4>{{prikazi((i*4)+3).naziv}}</h4>
+                        </a>
+                      </div>
+                      <h5>
+                        <strong>
+                          <a [routerLink]="['proizvod']" [state]="{ proizvod: prikazi((i*4)+3), role: role }" class="dark-grey-text">Proizvodi: {{prikazi((i*4)+3).proizvodjac}}
+                          </a>
+                        </strong>
+                      </h5>
+
+                      <span>{{prikazi((i*4)+3).cena}}din</span>
+                      <br>
+    
+                      <br>
+                  <form *ngIf='prikazi((i*4)+3).kolicina>0 && ulogaKorisnika=="ROLE_POLJOPRIVREDNIK"' class="d-flex justify-content-left">
+                    <!-- Default input -->
+                    <input type="number" min="1" value="1" #kolicina3 aria-label="Search" class="form-control" style="width: 60px">
+                    <button (click)='dodajUKorpu(prikazi((i*4)+3), kolicina3.value)' class="btn btn-primary btn-sm my-0 p" type="submit">Dodaj u korpu
+                      <i class="fas fa-shopping-cart ml-1"></i>
+                    </button>
+                  </form>
+                      <h5 *ngIf='prikazi((i*4)+3).kolicina==0' class="text-white" style="border-radius: 5px; background-color: rgb(247, 41, 41); font-weight: 100; height: 35px; text-align: center; vertical-align: text-bottom;">
+                        NEMA NA STANJU
+                      </h5>
+    
+                       <!--Rejting-->
+                  <div class="container"> 
+                    <ng-template #t let-fill="fill">
+                      <span class="star" [class.full]="fill === 100">
+                        <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                      </span>
+                    </ng-template>
+                    
+                    <ngb-rating [(rate)]="prikazi((i*4)+3).ocena" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+                    
+                    <pre>Ocena: <b *ngIf='prikazi((i*4)+3).ocena!=0'>{{prikazi((i*4)+3).ocena}}</b> <b *ngIf='prikazi((i*4)+3).ocena==0'>Nema ocena</b></pre>
+                  </div>
+                    </div>
+                    <!--Card content-->
+    
+                  </div>
+                  <!--Card-->
+    
+                </div>
+                <!--Grid column 4-->
+    
+        <!-- </span> -->
+     
+
+       <!-- </span>  -->
+
+      
+      
+    </div>
+    <!--Grid row-->
+
+   </span>
+   
+  
+
+  </section>
+  <!--Section: Products v.3-->
+
+
+      
+
+
+     

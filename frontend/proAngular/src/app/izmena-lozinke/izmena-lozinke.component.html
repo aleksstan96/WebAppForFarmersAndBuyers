@@ -1,0 +1,49 @@
+
+  <div class="container-fluid" >
+    <div class="row centered-form">
+    <!-- <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4"> -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    <h2  class="panel-title">Izmenite lozinku</h2>
+                    <br>
+                     </div>
+                     <mat-dialog-content>
+                        <div class="panel-body">
+                           
+
+                            <div class="form-group">
+                                <input type="password" [(ngModel)]="oldPass" placeholder="Stara lozinka"  class="form-control input-sm">
+                            </div>
+                            
+
+                            <div class="form-group">
+                                <input type="password" [(ngModel)]="newPass"  #password="ngModel"  [pattern]="regex" placeholder="Nova lozinka"  class="form-control input-sm">
+                                <div *ngIf="password.invalid &&  clicked"
+                                            class="alert alert-danger">
+
+                                            
+                                            <div *ngIf="password.errors?.pattern">
+                                                Lozinka sadržati barem 7 karaktera, od toga bar jedno veliko slovo, jedan broj i jedan specijalan karakter i mora počinjati slovom.
+                                           </div> 
+                                        </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" [(ngModel)]="newPass1" placeholder="Ponovljena nova lozinka"  class="form-control input-sm">
+                            </div>
+                           
+                           
+                            <div *ngIf='message!=""' style="color: red;text-align: center;">
+                                {{message}}
+                            </div>
+                            <br>
+                            <input type="submit" value="Izmenite" class="btn btn-info btn-block" (click)="izmeni()">
+                   
+                          
+                    
+                    </div>
+                </mat-dialog-content>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->

@@ -1,0 +1,49 @@
+  <!-- Page Wrapper -->
+<div style="min-height: 100%; background-image:  linear-gradient(to bottom, rgba(255,255,255,0.37) 500%,rgba(255,255,255,0.9) 500%), url(https://img1.akspic.ru/image/46982-pastbishhe-art-semeystvo_travy-rozh-pole-1920x1080.jpg)" class="page-holder bg-cover">
+
+  <div style="padding-top: 1cm; padding-right: 15px; text-align: right;">
+    <h4>
+      
+      <a href="/magPor/{{magacinId}}" class="text-warning">Pogledajte porudžbine <i class="fas fa-truck"></i></a>
+    
+    </h4>
+    
+  </div>
+  
+ 
+  <div class="container">
+
+   <!--FILTRIRANJE -->
+  <mat-form-field>
+    <mat-label>Pretraga</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Unesite parametar pretrage.">
+  </mat-form-field>
+  
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+    <!-- Position Column -->
+    <ng-container matColumnDef="naziv">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Naziv </th>
+      <td mat-cell *matCellDef="let element"> {{element.naziv}} </td>
+    </ng-container>
+  
+    <!-- Name Column -->
+    <ng-container matColumnDef="proizvodjac">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Proizvodjac </th>
+      <td mat-cell *matCellDef="let element"> {{element.proizvodjac}} </td>
+    </ng-container>
+  
+    <!-- Weight Column -->
+    <ng-container matColumnDef="kolicina" >
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Kolicina </th>
+      <td mat-cell *matCellDef="let element"> {{element.kolicina}} </td>
+    </ng-container>
+  
+  
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+
+  
+  

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ProizvodPorudzbinaController.java&apos; to &apos;demo/src/main/java/com.aleks.pia.controllers&apos;&#x0D;&#x0A;- Original project: &apos;demo&apos;&#x0D;&#x0A;- Destination element: &apos;demo/src/main/java/com.aleks.pia.controllers&apos;&#x0D;&#x0A;- Original element: &apos;com.aleks.pia.controllers.ProizvodPorudzbinaController.java&apos;" description="Copy compilation unit" destination="/src\/main\/java&lt;com.aleks.pia.controllers" element1="/src\/main\/java&lt;com.aleks.pia.controllers{ProizvodPorudzbinaController.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1591729469791" units="1" version="1.0"/>
+</session>

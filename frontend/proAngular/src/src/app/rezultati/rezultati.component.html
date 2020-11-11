@@ -1,0 +1,19 @@
+<div class="container" style="min-height: 100%; background-color: rgb(255, 248, 190);">
+    <div  style="text-align: center; padding-top: 1cm; padding-bottom: 1cm;">
+        <h2 > Rezultati poslovanja u prethodnih 30 dana</h2>
+    </div>
+    
+
+    <div class="chart-wrapper">
+        <canvas baseChart 
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+        
+    </canvas>
+    </div>
+
+</div>

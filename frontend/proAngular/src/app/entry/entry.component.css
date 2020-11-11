@@ -1,0 +1,20 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.page-holder {
+    min-height: 100vh;
+  }
+  
+  .bg-cover {
+    background-size: cover !important;
+  }
+
+  .h2{
+    color: rgba(6, 88, 143, 200)
+    ;
+  }

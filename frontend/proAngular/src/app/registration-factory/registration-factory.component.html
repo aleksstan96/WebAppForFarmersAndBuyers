@@ -1,0 +1,135 @@
+
+  <div class="container-fluid" >
+    <div class="row centered-form">
+    <!-- <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4"> -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    <h2  class="panel-title">Vodite preduzeće? Registrujte se!</h2>
+                    <br>
+                     </div>
+                     <mat-dialog-content>
+                        <div class="panel-body">
+                            <div *ngIf="clicked && razliciteLozinke" class="alert alert-danger form-group">
+                                Ponovljena lozinka se razlikuje od originalne.
+                             </div>
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="preduzece.naziv" #naziv="ngModel" required placeholder="Naziv preduzeća"  class="form-control input-sm">
+                                        <div *ngIf="naziv.invalid &&  clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="naziv.errors?.required">
+                                               Unesite ime.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <div *ngIf="usernamePostoji" class="alert alert-danger form-group">
+                                            Korisničko ime (skraćenica) već postoji u sistemu.
+                                         </div>
+                                        <input type="text" [(ngModel)]="preduzece.skracenica" #username="ngModel" required placeholder="Skraćenica"  class="form-control input-sm">
+                                        <div *ngIf="username.invalid && clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="username.errors?.required">
+                                               Unesite prezime.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                       
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" [(ngModel)]="preduzece.password" #password="ngModel" required [pattern]="regex" placeholder="Lozinka"  class="form-control input-sm">
+                                        <div *ngIf="password.invalid &&  clicked"
+                                            class="alert alert-danger">
+
+                                            <div *ngIf="password.errors?.required">
+                                                Unesite lozinku.
+                                            </div>
+                                            <div *ngIf="password.errors?.pattern">
+                                                Lozinka sadržati barem 7 karaktera, od toga bar jedno veliko slovo, jedan broj i jedan specijalan karakter i mora počinjati slovom.
+                                           </div> 
+                                        </div>    
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" [(ngModel)]="passwordReplica" placeholder="Potvrda lozinke" required #potvrda="ngModel" class="form-control input-sm">
+                                        <div *ngIf="potvrda.invalid &&  clicked"
+                                        class="alert alert-danger">
+
+                                            <div *ngIf="potvrda.errors?.required">
+                                            Unesite potvrdu lozinke.
+                                            </div>
+                                  </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="date" placeholder="Datum osnivanja" #datum="ngModel" required [(ngModel)]="preduzece.datumOsnivanja"  class="form-control input-sm">
+                                        <div *ngIf="datum.invalid &&  clicked"
+                                        class="alert alert-danger">
+
+                                    <div *ngIf="datum.errors?.required">
+                                       Unesite potvrdu lozinke.
+                                    </div>
+                                  </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text"  placeholder="Mesto osnivanja"  [(ngModel)]="preduzece.mestoOsnivanja" required #mesto="ngModel" class="form-control input-sm">
+                                        <div *ngIf="(mesto.invalid ) && clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="mesto.errors?.required">
+                                               Unesite mesto rodjenja.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="text"  placeholder="Email adresa" [(ngModel)]="preduzece.email" #email="ngModel" required  class="form-control input-sm">
+                                <div *ngIf="email.invalid  && clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="email.errors?.required">
+                                               Unesite email adresu.
+                                            </div>
+                                          </div>
+                            </div>
+
+                            <div  style="text-align: center;">
+                                <re-captcha (resolved)="resolved($event)"
+                                            siteKey="6LftOAEVAAAAAFj_IqRXBdwb9OLTFh9h8TlCDoI8" ></re-captcha>
+                            </div>
+                            <br>
+                            
+                            <input type="submit" value="Registracija" class="btn btn-info btn-block" (click)="save(naziv.errors?.required, username.errors?.required,password.errors?.required,potvrda.errors?.required,datum.errors?.required,mesto.errors?.required, email.errors?.required)">
+                            <!-- <button class="mat-button" mat-dialog-close>Close</button> 
+                      <button class="mat-raised-button" (click)="save()">Save</button> -->
+                      <div align="center">
+                        <small >Već ste registrovani?<a  href="/"> 
+                            Prijavite se
+                        </a></small>
+                      </div>
+                          
+                    </div>
+                </mat-dialog-content>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->

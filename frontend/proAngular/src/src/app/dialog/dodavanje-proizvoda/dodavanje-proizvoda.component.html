@@ -1,0 +1,118 @@
+<div class="container">
+
+    <mat-horizontal-stepper linear #stepper>
+        <mat-step [stepControl]="firstFormGroup" errorMessage="Naziv je neophodan.">
+          <form [formGroup]="firstFormGroup">
+            <ng-template matStepLabel>Naziv proizvoda</ng-template>
+            <mat-form-field>
+              <mat-label>Naziv</mat-label>
+              <input matInput placeholder=""  [(ngModel)]='proizvod.naziv' formControlName="firstCtrl" required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperNext (click)='click()'>Sledeći</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step  [stepControl]="secondFormGroup" errorMessage="Cena je neophodna.">
+          <form [formGroup]="secondFormGroup">
+            <ng-template matStepLabel>Cena proizvoda u dinarima</ng-template>
+            <mat-form-field>
+              <mat-label>Cena</mat-label>
+              <input type='number' min="0" [(ngModel)]='proizvod.cena' matInput placeholder="" formControlName="secondCtrl"
+                     required>
+            </mat-form-field>
+            <div>
+              <button mat-button matStepperPrevious>Prethodni</button>
+              <button mat-button matStepperNext>Sledeći</button>
+            </div>
+          </form>
+        </mat-step>
+        <mat-step [stepControl]="thirdFormGroup" errorMessage="Količina je neophodna.">
+            <form [formGroup]="thirdFormGroup">
+              <ng-template matStepLabel>Količina </ng-template>
+              <mat-form-field>
+                <mat-label>Količina</mat-label>
+                <input  type='number' min="0" [(ngModel)]='proizvod.kolicina' matInput placeholder="" formControlName="secondCtrl"
+                       required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Prethodni</button>
+                <button mat-button matStepperNext>Sledeći</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="fifthFormGroup" errorMessage="Kategorija je neophodna.">
+            <form [formGroup]="fifthFormGroup">
+              <ng-template matStepLabel>Kategorija proizvoda</ng-template>
+              <mat-form-field>
+                <mat-label>Kategorija</mat-label>
+                <input [(ngModel)]='proizvod.kategorija' matInput placeholder="sadnica/preparat" formControlName="secondCtrl"
+                       required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Prethodni</button>
+                <button mat-button matStepperNext>Sledeći</button>
+              </div>
+            </form>
+          </mat-step>
+         
+          <!-- <mat-step [stepControl]="sixthFormGroup"  errorMessage="Slika je neophodna.">
+            <form [formGroup]="sixthFormGroup">
+              <ng-template matStepLabel>Slika proizvoda</ng-template>
+              <mat-form-field>
+                <mat-label>URL slike</mat-label>
+                <input [(ngModel)]='proizvod.slikaUrl' matInput placeholder="" formControlName="secondCtrl"
+                      required >
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Prethodni</button>
+                <button mat-button matStepperNext>Sledeći</button>
+              </div>
+            </form>
+          </mat-step> -->
+
+
+          <mat-step [stepControl]="seventhFormGroup" errorMessage="Opis je neophodan.">
+            <form [formGroup]="seventhFormGroup">
+              <ng-template matStepLabel>Opis proizvoda</ng-template>
+              <mat-form-field>
+                <mat-label>Opis</mat-label>
+                <input [(ngModel)]='proizvod.info' matInput placeholder="" formControlName="secondCtrl"
+                       required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Prethodni</button>
+                <button mat-button matStepperNext>Sledeći</button>
+              </div>
+            </form>
+          </mat-step>
+          <mat-step [stepControl]="eighthFormGroup" errorMessage="Broj dana je neophodan.">
+            <form [formGroup]="eighthFormGroup">
+              <ng-template matStepLabel>Broj dana</ng-template>
+              <mat-form-field>
+                <mat-label>Broj dana </mat-label>
+                <input  type='number' [(ngModel)]='proizvod.dani' matInput placeholder="Životni vek sadnice/Broj dana za koji preparat ubrzava rast" formControlName="secondCtrl"
+                       required>
+              </mat-form-field>
+              <div>
+                <button mat-button matStepperPrevious>Prethodni</button>
+                <button mat-button matStepperNext>Sledeći</button>
+              </div>
+            </form>
+          </mat-step>
+        <mat-step>
+            
+          <ng-template matStepLabel>Kraj</ng-template>
+          <p>Unos je završen.</p>
+          <div>
+            <button mat-button matStepperPrevious (click)='save()'>Sačuvajte</button>
+            <button mat-button matStepperPrevious>Prethodni</button>
+            <button mat-button (click)="stepper.reset()">Reset</button>
+          </div>
+        </mat-step>
+      </mat-horizontal-stepper>
+
+      <div style="color: red;" *ngIf='message!=""'>
+        {{message}}
+      </div>
+</div>

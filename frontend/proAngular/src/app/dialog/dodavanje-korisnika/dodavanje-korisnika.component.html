@@ -1,0 +1,152 @@
+
+  <div class="container-fluid" >
+    <div class="row centered-form">
+    <!-- <div class="col-xs-12 col-sm-8 col-md-4 col-sm-offset-2 col-md-offset-4"> -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                    <h2  class="panel-title">Dodajte poljoprivrednika</h2>
+                    <br>
+                     </div>
+                     <mat-dialog-content>
+                        <div class="panel-body" >
+                            <div *ngIf="clicked && razliciteLozinke" class="alert alert-danger form-group">
+                                Ponovljena lozinka se razlikuje od originalne.
+                             </div>
+                            <div class="row">
+                                
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="poljoprivrednik.ime" placeholder="Ime" #name="ngModel" required  class="form-control input-sm">
+                                        <div *ngIf="name.invalid &&  clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="name.errors?.required">
+                                               Unesite ime.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" [(ngModel)]="poljoprivrednik.prezime" #prezime="ngModel" placeholder="Prezime" required  class="form-control input-sm">
+                                    </div>
+                                    <div *ngIf="prezime.invalid && clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="prezime.errors?.required">
+                                               Unesite prezime.
+                                            </div>
+                                          </div>
+                                </div>
+                            </div>
+                            <div *ngIf="usernamePostoji" class="alert alert-danger form-group">
+                                Korisničko ime već postoji u sistemu.
+                             </div>
+                            <div class="form-group">
+                                <input type="text" placeholder="Korisnicko ime" [(ngModel)]="user.username" #username="ngModel" required class="form-control input-sm">
+                                <div *ngIf="username.invalid &&  clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="username.errors?.required">
+                                               Unesite korisničko ime.
+                                            </div>
+                                          </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" placeholder="Lozinka" [(ngModel)]="user.password"
+                                        #password="ngModel" required [pattern]="regex" class="form-control input-sm">
+                                        <div *ngIf="password.invalid &&  clicked"
+                                            class="alert alert-danger">
+
+                                            <div *ngIf="password.errors?.required">
+                                                Unesite lozinku.
+                                            </div>
+                                            <div *ngIf="password.errors?.pattern">
+                                                Lozinka sadržati barem 7 karaktera, od toga bar jedno veliko slovo, jedan broj i jedan specijalan karakter i mora počinjati slovom.
+                                           </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="password" [(ngModel)]="passwordReplica" placeholder="Potvrda lozinke" (input)="razliciteLozinke=false" #potvrda="ngModel" required class="form-control input-sm">
+                                        <div *ngIf="potvrda.invalid &&  clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="potvrda.errors?.required">
+                                               Unesite potvrdu lozinke.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="date" placeholder="Datum rodjenja" [(ngModel)]="poljoprivrednik.datumRodjenja" #datum="ngModel" required class="form-control input-sm">
+                                        <div *ngIf="datum.invalid && clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="datum.errors?.required">
+                                               Unesite datum rodjenja.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="text"  placeholder="Mesto rodjenja" [(ngModel)]="poljoprivrednik.mestoRodjenja" #mesto="ngModel" required class="form-control input-sm">
+                                        <div *ngIf="(mesto.invalid ) && clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="mesto.errors?.required">
+                                               Unesite mesto rodjenja.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="tel" placeholder="Broj telefona" [(ngModel)]="poljoprivrednik.telefon" #telefon="ngModel" required class="form-control input-sm">
+                                        <div *ngIf="telefon.invalid  && clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="telefon.errors?.required">
+                                               Unesite broj telefona.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 col-sm-6 col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" placeholder="Email adresa" [(ngModel)]="poljoprivrednik.email" #email="ngModel" required class="form-control input-sm">
+                                        <div *ngIf="email.invalid && clicked"
+                                                class="alert alert-danger">
+
+                                            <div *ngIf="email.errors?.required">
+                                               Unesite email adresu.
+                                            </div>
+                                          </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <input type="submit" value="Dodajte" class="btn btn-info btn-block" (click)="save(name.errors?.required, prezime.errors?.required,username.errors?.required,password.errors?.required,potvrda.errors?.required,datum.errors?.required,mesto.errors?.required, telefon.errors?.required, email.errors?.required)">
+                            <!-- <button class="mat-button" mat-dialog-close>Close</button> 
+                      <button class="mat-raised-button" (click)="save()">Save</button> -->
+                  
+                          
+                    
+                    </div>
+                </mat-dialog-content>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->

@@ -1,0 +1,62 @@
+<!-- Page Wrapper -->
+<div style="min-height: 100%; background-image: linear-gradient(to bottom, rgba(255,255,255,0.37) 500%,rgba(255,255,255,0.9) 500%),  url(https://img1.akspic.ru/image/46982-pastbishhe-art-semeystvo_travy-rozh-pole-1920x1080.jpg)" class="page-holder bg-cover">
+<!-- url(https://img1.akspic.ru/image/46982-pastbishhe-art-semeystvo_travy-rozh-pole-1920x1080.jpg)"  -->
+    <div class="container py-5">
+      <!-- <header class="text-center text-white py-5">
+        
+      </header> -->
+
+     
+      <div class="container  text-white font-weight-bolder">
+        <h1>Dobrodosli {{poljoprivrednik.ime}}! <i class="fas fa-leaf"></i></h1> 
+        <p>Klikom izaberite rasadnik koji želite da pregledate.</p>     
+
+        <div style="position: fixed; top:100px; right:60px;">
+          <button type="button" class="btn btn-success btn-lg"  mat-raised-button (click)="openDialog()">Dodajte rasadnik</button>
+        </div>
+        
+        
+       <!--tabela-->  
+        <table class="table table-hover ">
+          <thead class=" text-dark-50 bg-white lead font-weight-bolder">
+            <tr>
+              <th>Naziv</th>
+              <th>Mesto</th>
+              <th>Broj sadnica</th>
+              <th>Broj mesta</th>
+              <th>Temperatura<small> (°C)</small></th>
+              <th>Voda<small> (Litar)</small></th>
+              <th>Magacin</th>
+            </tr>
+          </thead>
+          <tbody class="font-weight-bold text-dark"  >
+            <tr   *ngFor= "let rasadnik of rasadnici">
+              <td (click)="openRasadnik(rasadnik.id)">{{rasadnik.naziv}}</td>
+              <td (click)="openRasadnik(rasadnik.id)">{{rasadnik.mesto}}</td>
+              <td (click)="openRasadnik(rasadnik.id)">{{rasadnik.brSadnica}}</td>
+              <td (click)="openRasadnik(rasadnik.id)">{{rasadnik.brSlobodnih}}</td>
+              <td (click)="openRasadnik(rasadnik.id)">{{rasadnik.temperatura}}</td>
+              <td (click)="openRasadnik(rasadnik.id)">{{rasadnik.voda}}</td>
+              <td><a href='magacin/{{rasadnik.id}}'>Pogledajte magacin</a></td>
+            </tr>
+           
+          </tbody>
+        </table>
+      </div>
+      
+        <!--kraj tabele -->
+      
+
+  
+    </div>
+  </div>
+  
+   <!-- <div class="view" style="background-image: url(' https://download.hipwallpaper.com/desktop/1600/900/67/99/s0DieU.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;" > -->
+              <!-- <div class="view" style="background-image: url(' https://cdn.hipwallpaper.com/i/46/47/FEKGR1.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;" > -->
+              <!-- <div class="view" style="background-image: url(' https://cdn.hipwallpaper.com/i/49/57/ZwV6XH.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;" > -->
+                <!-- <div class="view" style="background-image: url(' https://cdn.stocksnap.io/img-thumbs/960w/green-farm_RQFZWA5OOP.jpg'); background-repeat: no-repeat; background-size: cover; background-position: center;" > -->
+  
+  
+  
+  
+  

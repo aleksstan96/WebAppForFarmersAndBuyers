@@ -1,0 +1,55 @@
+<div style="min-height: 100%;  background-image: linear-gradient(to bottom, rgba(255,255,255,0.37) 500%,rgba(255,255,255,0.9) 500%), url(https://cdn.hipwallpaper.com/i/46/47/FEKGR1.jpg)" class="page-holder bg-cover">
+
+<div class="container" style=" padding-top: 1cm;">
+    <h2 style="text-align: center; padding-top: 2cm; color: darkred;" *ngIf='proizvodi.length==0'>Nema prizvoda u korpi</h2>
+    <table class="table table-bordered" style="background-color: white;" *ngIf='proizvodi.length>0'>
+        <thead>
+          <tr>
+            <th>Slika proizvoda</th>
+            <th>Detalji proizvoda</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor='let temp of proizvodi'>
+            <td>
+                <div class="container" >
+                    <img src="{{temp.slikaUrl}}" width="130" height="120">
+                </div>
+            </td>  
+            <td>{{temp.naziv}}<br>{{temp.proizvodjac}}<br>{{temp.cena}}din</td>
+            <td>Količina: {{temp.kolicina}} <br> {{temp.kolicina* temp.cena}}din</td>
+            <td>
+              <button type="button" class="btn btn-info" (click)='kolicinaPlus(temp)'><i class="fas fa-plus"></i></button>
+              <br>
+              <br>
+              <button  type="button" class="btn btn-info" (click)='kolicinaMinus(temp)' ><i class="fas fa-minus"></i></button>
+            </td>
+          </tr>
+          <tr>
+              <td style="font-size: x-large; font-weight: bold;">Izaberite rasadnik
+                <mat-form-field>
+                    <mat-label>Izaberite rasadnik</mat-label>
+                    <mat-select [(ngModel)]="selectedValue" name="food">
+                      <mat-option *ngFor="let food of rasadnici" [value]="food.id">
+                        {{food.naziv}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  
+              </td>
+              <td style="font-size: x-large; font-weight: bold;">Ukupan iznos porudžbine: {{ukupanIznos}}din</td>
+              <td *ngIf='selectedValue!=null'>
+                  <button (click)='proslediPorudzbinu(selectedValue, idPolj)' type='button' class="btn btn-primary">Prosledite porudžbinu <i  class="fas fa-cash-register"></i></button>
+          </tr>
+         
+        </tbody>
+      </table>
+      <div style="color: green;">
+        <h4>{{message}}</h4>
+      </div>
+
+</div>
+
+</div>

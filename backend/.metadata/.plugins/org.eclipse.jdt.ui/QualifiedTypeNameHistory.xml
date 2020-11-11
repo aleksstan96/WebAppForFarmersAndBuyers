@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
+<fullyQualifiedTypeName name="com.aleks.pia.dao.JeOcenioRepository"/>
+<fullyQualifiedTypeName name="com.aleks.pia.dao.UserRepository"/>
+<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
+<fullyQualifiedTypeName name="com.aleks.pia.entity.JeOcenio"/>
+<fullyQualifiedTypeName name="com.aleks.pia.entity.JeOcenioKey"/>
+<fullyQualifiedTypeName name="com.aleks.pia.entity.User"/>
+<fullyQualifiedTypeName name="java.sql.DriverManager"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
+<fullyQualifiedTypeName name="java.util.logging.Logger"/>
+<fullyQualifiedTypeName name="java.util.logging.Level"/>
+<fullyQualifiedTypeName name="DB"/>
+<fullyQualifiedTypeName name="java.lang.ProcessBuilder.Redirect"/>
+<fullyQualifiedTypeName name="java.sql.Connection"/>
+<fullyQualifiedTypeName name="util.DB"/>
+<fullyQualifiedTypeName name="impl.Sector"/>
+<fullyQualifiedTypeName name="java.lang.Boolean"/>
+<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
+<fullyQualifiedTypeName name="java.sql.ResultSet"/>
+<fullyQualifiedTypeName name="java.lang.Integer"/>
+<fullyQualifiedTypeName name="impl.Row"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="impl.Seat"/>
+<fullyQualifiedTypeName name="java.lang.Double"/>
+<fullyQualifiedTypeName name="impl.Sab_jun"/>
+<fullyQualifiedTypeName name="java.awt.print.Pageable"/>
+<fullyQualifiedTypeName name="com.aleks.pia.dao.JeDodeljenRepository"/>
+<fullyQualifiedTypeName name="com.aleks.pia.dao.KurirRepository"/>
+<fullyQualifiedTypeName name="com.aleks.pia.dao.PorudzbinaRepository"/>
+<fullyQualifiedTypeName name="com.aleks.pia.controllers.JeDodeljenController"/>
+<fullyQualifiedTypeName name="com.aleks.pia.entity.JeDodeljen"/>
+<fullyQualifiedTypeName name="com.aleks.pia.entity.JeDodeljenKey"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.math.BigDecimal"/>
+</qualifiedTypeNameHistroy>

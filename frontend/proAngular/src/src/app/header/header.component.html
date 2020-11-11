@@ -1,0 +1,74 @@
+
+
+<nav class="navbar navbar-expand-sm navbar-light bg-light py-1">
+     <!-- Brand/logo -->
+  <a class="navbar-brand" style="font-size: x-large; font-family: Arial, Helvetica, sans-serif;" href=""><img src="assets/images/logo.png" width="50" height="50" class="rounded" alt=""> 
+    Veles</a>
+  
+
+    
+        <!-- <div class="navbar-header">
+            <a class="navbar-brand" href=""></a>
+          </div> -->
+      
+<div class="container-fluid">
+        <ul class="nav navbar-nav">
+            <li class="nav-item">
+                <div >
+                    <button type="button" class="btn" (click)='openShop()' ></button>
+                  </div>
+            </li>
+           
+          </ul>
+</div>
+<div class="container-fluid">    
+    <ul class="nav navbar-nav navbar-right">
+        
+        <li class="nav-item" *ngIf='isLoggedIn==true && preduzece==true'>
+             <div class="nav navbar-nav navbar-right mb-1">
+                 <a href="/rezultati" style="color: royalblue; font-size: larger;">Rezultati poslovanja <i class="fas fa-chart-line"></i></a>
+                <!-- <button *ngIf='isLoggedIn==true' type="button" class="btn btn-warning btn-lg" (click)='openShop()' >Online prodavnica <i class="fas fa-shopping-bag"></i></button>
+             -->
+            </div>
+        </li>
+       
+      </ul>
+    <ul class="nav navbar-nav navbar-right">
+        
+        <li class="nav-item" *ngIf='isLoggedIn==true'>
+             <div class="nav navbar-nav navbar-right mb-1">
+                 <a href="/shop" style="color: royalblue; font-size: larger;">Online prodavnica <i class="fas fa-shopping-bag"></i></a>
+                <!-- <button *ngIf='isLoggedIn==true' type="button" class="btn btn-warning btn-lg" (click)='openShop()' >Online prodavnica <i class="fas fa-shopping-bag"></i></button>
+             -->
+            </div>
+        </li>
+       
+      </ul>
+
+      <div *ngIf='isLoggedIn==true && poljoprivrednik==true' class="nav navbar-nav navbar-right mb-1" style="border: royalblue;">
+         <a href="/shoppingcart" style="color: royalblue; font-size: larger;">Korpa <i style="color: royalblue; font-size: larger;" class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            
+        </div>
+
+     
+          
+        
+
+        
+        <div *ngIf='isLoggedIn==false' class="nav navbar-nav navbar-right">
+            
+            <a (click)="openDialog()" class="btn btn-default btn-rounded mb">
+                
+                <i class="fa fa-user fa-1.8x"></i> <span class="glyphicon glyphicon-user"></span> Login
+            </a>
+        </div>
+        <div *ngIf='isLoggedIn==true' class="nav navbar-nav navbar-right">
+            
+            <a (click)="logout()" class="btn btn-default btn-rounded mb"><div style="background-color: lightblue;">{{user}}</div>
+                <i class="fas fa-sign-out-alt"></i> <span class="glyphicon glyphicon-user"></span> Logout
+            </a>
+        </div>
+    </div>
+</nav>
+
+

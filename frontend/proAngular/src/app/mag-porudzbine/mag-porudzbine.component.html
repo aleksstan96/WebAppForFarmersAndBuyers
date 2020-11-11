@@ -1,0 +1,65 @@
+<div style="min-height: 100%;  background-image: linear-gradient(to bottom, rgba(255,255,255,0.37) 500%,rgba(255,255,255,0.9) 500%), url(https://cdn.hipwallpaper.com/i/46/47/FEKGR1.jpg)" class="page-holder bg-cover">
+    <!-- url(https://img1.akspic.ru/image/46982-pastbishhe-art-semeystvo_travy-rozh-pole-1920x1080.jpg) -->
+ <div class="container" style="padding-top: 20px;">
+    <table class="table table-hover " >
+        <thead class=" text-dark-50 bg-white lead font-weight-bolder">
+        <tr>
+            <th><i class="fas fa-truck"></i></th>
+            <th>Cena</th>
+            <th>Datum poručivanja </th>
+            <td>Detalji</td>
+            <th>Status</th>
+            <th>Otkazi</th>
+            
+        </tr>
+    
+        </thead>
+        <tbody class="font-weight-bold text-dark"  >
+        <tr   *ngFor= "let temp of porudzbine; let i=index">
+            
+            <td >{{i+1}}</td>
+            <td >{{temp.cena}}din</td>
+            <td >{{temp.datumKreiranja | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td><button type="button" class="btn btn-info" (click)='dohvatiProizvodePorudzbine(temp.id)'>Vidi proizvode</button></td>
+            <td>{{temp.status}}</td>
+            <td *ngIf='temp.status=="kreirana" || temp.status=="cekanje"'>
+                <button type="button" (click)='otkazi(temp.id)' class="btn btn-warning">Otkaži</button>
+            </td>
+        </tr>
+        
+        </tbody>
+    </table>
+ </div>
+
+
+ <div class="container" *ngIf='proizvodiPrikaz.length>0'>
+ <table class="table table-hover " >
+    <thead class=" text-dark-50 bg-white lead font-weight-bolder">
+    <tr>
+        <th><i class="fas fa-archive"></i></th>
+        <th>Naziv</th>
+        <th>Slika</th>
+        <th>Cena</th>
+        <td>Količina</td>
+        
+    </tr>
+
+    </thead>
+    <tbody class="font-weight-bold text-dark"  >
+    <tr   *ngFor= "let temp of proizvodiPrikaz;let i = index">
+        
+        <td >{{i+1}}</td>
+        <td >{{temp.proizvod.naziv}}</td>
+        <td style="text-align: left;">
+            <!-- <div class="container" > -->
+                <img src="{{temp.proizvod.slikaUrl}}" width="60" height="50">
+            <!-- </div> -->
+        </td>  
+        <td >{{temp.proizvod.cena }}din</td>
+        <td>{{temp.kolicina}}</td>
+    </tr>
+    
+    </tbody>
+    </table>
+
+</div>

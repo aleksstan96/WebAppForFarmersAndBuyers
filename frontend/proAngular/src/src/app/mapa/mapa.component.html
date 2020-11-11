@@ -1,0 +1,23 @@
+<!-- <div class="container">
+    <agm-map style="height: 400px;" [latitude]="lat" [longitude]="lng">
+        <agm-direction 
+        [origin]="origin" 
+        [destination]="destination"
+        >
+        </agm-direction>
+    </agm-map>
+</div> -->
+
+
+<span *ngIf='vremeh>=1'>
+    Vreme:{{vremeh}}h
+  <br>  
+  </span>
+  
+  <span *ngIf='vremeh<1'>
+      Vreme: {{vremem}}min
+  </span>
+  
+  <br>
+  Kilometraza: {{kilometraza}}km
+  

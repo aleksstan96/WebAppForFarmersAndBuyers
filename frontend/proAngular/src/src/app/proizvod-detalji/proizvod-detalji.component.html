@@ -1,0 +1,73 @@
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container dark-grey-text mt-5">
+
+      <!--Grid row-->
+      <div class="row">
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <img src={{proizvod.slikaUrl}} class="img-fluid" alt="">
+
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-4">
+
+          <!--Content-->
+          <div class="p-4">
+
+            <p class="lead font-weight-bold">{{proizvod.naziv}}</p>
+
+            <p class="lead">
+            
+              <span>{{proizvod.cena}}din</span>
+            </p>
+
+            <p class="lead font-weight-bold">Opis</p>
+
+            <p>{{proizvod.info}}</p>
+
+            <form *ngIf='proizvod.kolicina>0 && role=="shop" && ulogaKorisnika=="ROLE_POLJOPRIVREDNIK"' class="d-flex justify-content-left">
+              <!-- Default input -->
+              <input type="number"  value='1' #kol  aria-label="Search" class="form-control" style="width: 100px">
+              <button (click)='dodajUKorpu(proizvod, kol.value)'  class="btn btn-primary btn-md my-0 p" type="submit">Dodaj u korpu
+                <i class="fas fa-shopping-cart ml-1"></i>
+              </button>
+
+            </form>
+            <div  *ngIf='proizvod.kolicina==0 && role=="shop"' style="background-color: tomato; text-align: center;">
+                NEMA NA STANJU
+            </div>
+            <br>
+             <!--Rejting-->
+             <div class="container"> 
+              <ng-template #t let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                  <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                </span>
+              </ng-template>
+              
+              <ngb-rating [(rate)]="proizvod.ocena" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+              
+              <pre>Ocena: <b *ngIf='proizvod.ocena!=0'>{{proizvod.ocena}}</b> <b *ngIf='proizvod.ocena==0'>Nema ocena</b></pre>
+            
+              <a  *ngIf="role=='shop' && ulogaKorisnika=='ROLE_POLJOPRIVREDNIK' " (click)="openDialog(proizvod.id)" class="text-primary">Vidite ocene i ocenite </a>
+              <a  *ngIf="(role=='preduzece' || ulogaKorisnika=='ROLE_ADMIN' || ulogaKorisnika=='ROLE_PREDUZECE') && proizvod.ocena>0" (click)="openDialog(proizvod.id)" class="text-primary">Vidite ocene  </a>
+            </div>
+
+            
+
+          </div>
+          <!--Content-->
+
+        </div>
+        <!--Grid column-->
+
+      </div>
+      <!--Grid row-->
+
+     <hr>

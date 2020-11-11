@@ -1,0 +1,71 @@
+
+<div class="container">
+    <!-- <div class="overflow-auto"> -->
+        <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <table class="table table-hover ">
+                <tr *ngIf="role=='ROLE_POLJOPRIVREDNIK'">
+                    <td style="text-align: center; font-size: 200%; font-weight: bolder;">Vaša recenzija</td>
+                </tr>
+                <tr  *ngIf="role=='ROLE_POLJOPRIVREDNIK'">
+                    
+                    <td style="text-align: center;">
+                        <ngb-rating  class="stars" [(rate)]="mojaOcena"></ngb-rating>
+                        <br>
+                        <pre >Ocena: <b *ngIf='mojaOcena!=0'>{{mojaOcena}}</b></pre>
+                        
+                        <textarea class="form-control" [(ngModel)]='mojKomentar' rows="4" id="comment" placeholder="Mesto za Vaš komentar"></textarea>
+                        <br>
+                        <div  *ngIf="message!=''" class="container" style="text-align: center; color: red;">
+                            {{message}}
+                        </div>
+                        <br>
+                        <button  type="button" (click)='oceni()' class="btn btn-primary mt-1">Ocenite</button>
+                    </td>
+                </tr >
+              
+                <tr  *ngIf="role=='ROLE_POLJOPRIVREDNIK'">
+                    <td style="text-align: center;  font-size: 200%; font-weight: bolder;">Ocene korisnika</td>
+                </tr>
+                
+                <tr *ngFor='let temp of rejtinzi' style="text-align: center;">
+                    <td >
+                        <!--Content-->
+                        <div class="p-4">
+                
+                        <p class="lead font-weight-bold">{{temp.username}}</p>
+                
+                        <p class="lead">
+                        
+                        <span>{{temp.komentar}}</span>
+                        </p>
+        
+             
+                        <!--Rejting-->
+                        <div class="container"> 
+                        <ng-template #t let-fill="fill">
+                            <span class="star" [class.full]="fill === 100">
+                            <span class="half" [style.width.%]="fill">&hearts;</span>&hearts;
+                            </span>
+                        </ng-template>
+                        
+                        <ngb-rating [(rate)]="temp.ocena" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating>
+                        
+                        <pre>Ocena: <b *ngIf='temp.ocena!=0'>{{temp.ocena}}</b> <b *ngIf='temp.ocena==0'>Nema ocena</b></pre>
+                        
+                        </div>
+                
+                        
+                
+                        </div>
+                        <!--Content-->
+                     </td>
+                
+               </tr>
+            </table>
+           </div> 
+    
+    
+            <!--kraj tabele -->
+       
+</div>
+

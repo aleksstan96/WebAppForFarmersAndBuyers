@@ -1,0 +1,108 @@
+ <!-- Page Wrapper -->
+<div style="background-image: linear-gradient(to bottom, rgba(255,255,255,0.37) 500%,rgba(255,255,255,0.9) 500%),  url(https://cdn.hipwallpaper.com/i/46/47/FEKGR1.jpg)" class="page-holder bg-cover">
+
+    <div class="container py-5">
+      <header class="text-center text-white py-4">
+        <h3 class="text-center">           
+          <a class="text-warning" routerLink="/admin/korisnici">Izmenite korisnike <i class="fas fa-users-cog"></i></a>
+        </h3>
+        
+      </header>
+
+ 
+      <div class="container">
+          <h2 style="text-align: center;" class="text-dark"> Zahtevi za registraciju poljoprivrednika</h2>
+         
+        <!--tabela-->  
+        <table class="table table-hover ">
+            <thead class=" text-dark-50 bg-white lead font-weight-bolder">
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Korisnicko ime</th>
+                <th>Datum rodjenja</th>
+                <th>Mesto rodjenja</th>
+                <th>Telefon</th>
+                <th>Email</th>
+                <th>Prihvaćen/Odbijen</th>
+                
+            </tr>
+            </thead>
+            <tbody class="font-weight-bold text-dark"  >
+            <tr   *ngFor= "let temp of poljZahtevi">
+                <td >{{temp.ime}}</td>
+                <td >{{temp.prezime}}</td>
+                <td >{{temp.username}}</td>
+                <td >{{temp.datumRodjenja | date}}</td>
+                <td >{{temp.mestoRodjenja}}</td>
+                <td >{{temp.telefon}}</td>
+                <td >{{temp.email}}</td>
+                <span *ngIf='temp.prihvacen == false && temp.nijePrihvacen == false'>  
+                  <td><button class="btn btn-success" (click)="prihvatiPoljZahtev(temp.id)">Prihvati</button></td>
+                  <td><button class="btn btn-danger" (click)="odbijPoljZahtev(temp.id)">Odbij</button></td>
+                </span>
+                <span *ngIf='temp.prihvacen == true && temp.nijePrihvacen == false'>  
+                  <td> Prihvaćen </td>
+                  <td>  <i class="fas fa-check"></i></td>
+                </span> 
+                <span *ngIf='temp.prihvacen == false && temp.nijePrihvacen == true'>  
+                  <td>Odbijen</td>
+                  <td>  <i class="fas fa-times"></i></td>
+                </span>
+            </tr>
+            
+            </tbody>
+        </table>
+
+
+        <!--kraj tabele -->
+ 
+      </div>
+
+      <div class="container">
+        <h2 style="text-align: center;" class="text-dark"> Zahtevi za registraciju preduzeća</h2>
+       
+      <!--tabela-->  
+      <table class="table table-hover ">
+          <thead class=" text-dark-50 bg-white lead font-weight-bolder">
+          <tr>
+              <th>Naziv</th>
+              <th>Skraćenica</th>
+              <th>Datum osnivanja</th>
+              <th>Mesto osnivanja</th>
+              <th>Email</th>
+              <th>Prihvaćen/Odbijen</th>
+          </tr>
+          </thead>
+          <tbody class="font-weight-bold text-dark"  >
+          <tr   *ngFor= "let temp of predZahtevi">
+              <td >{{temp.naziv}}</td>
+              <td >{{temp.skracenica}}</td>
+              <td >{{temp.datumOsnivanja | date}}</td>
+              <td >{{temp.mestoOsnivanja}}</td>
+              <td >{{temp.email}}</td>
+              <span *ngIf='temp.prihvacen == false && temp.nijePrihvacen == false'>  
+                <td><button class="btn btn-success"  (click)="prihvatiPredZahtev(temp.id)">Prihvati</button></td>
+                <td><button class="btn btn-danger"  (click)="odbijPredZahtev(temp.id)">Odbij</button></td>
+              </span>
+              <span *ngIf='temp.prihvacen == true && temp.nijePrihvacen == false'>  
+                <td>Prihvaćen</td>
+                <td>  <i class="fas fa-check"></i></td>
+              </span> 
+              <span *ngIf='temp.prihvacen == false && temp.nijePrihvacen == true'>  
+                <td>Odbijen</td>
+                <td>  <i class="fas fa-times"></i></td>
+              </span>
+          </tr>
+          
+          </tbody>
+      </table>
+
+
+      <!--kraj tabele -->
+
+    </div>
+        
+
+  </div>
+</div>
